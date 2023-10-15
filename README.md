@@ -1,10 +1,10 @@
 # WikipediaGame
 
-This website is currently not deployed but there are instructions of how to download, install and run it on your own machine.
+This website is currently not deployed but there are instructions below of how to download, install and run it on your own machine.
 
 ## Installation
 
-(these instructions should work under Gnu/Linux and Macos)
+(these instructions should work under GNU/Linux and Macos)
 
 Prerequisites: Python
 
