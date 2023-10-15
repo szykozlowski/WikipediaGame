@@ -10,7 +10,7 @@ def get_links(page_url):
     soup = BeautifulSoup(response.text, 'html.parser')
     from urllib.parse import urljoin
     all_links = [urljoin(page_url, a['href']) for a in soup.find_all('a', href=True) if '#' not in a['href']]
-    print(f"All links found: {all_links}")
+    # print(f"All links found: {all_links}")
     links = [link for link in all_links if re.match(r'^https://en\.wikipedia\.org/wiki/[^:]*$', link) and '#' not in link]
     print(f"Found {len(links)} links on page: {page_url}")
     return links
