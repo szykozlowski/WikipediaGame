@@ -16,6 +16,17 @@ document.getElementById('wiki-form').addEventListener('submit', function(event) 
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById('path').textContent = data.path;
+        var pathElement = document.getElementById('path');
+        pathElement.innerHTML = ''; // clear previous path
+        var ul = document.createElement('ul');
+        data.path.forEach(function(page) {
+            var li = document.createElement("li");
+            var a = document.createElement("a");
+            a.href = page;
+            a.textContent = decodeURIComponent(page);
+            li.appendChild(a);
+            ul.appendChild(li);
+        });
+        pathElement.appendChild(ul);
     });
 });
