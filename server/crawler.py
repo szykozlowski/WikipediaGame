@@ -24,10 +24,10 @@ def find_path(start_page, finish_page):
         for next in set(get_links(vertex)) - visited:
             print(f"Following link: {next} (depth {depth})")
             if next == finish_page:
-                # print(f"Found finish page: {next}")
-                return path + [next]
+                print(f"Found finish page: {next}")
+                return path + [next], []
             else:
-                # print(f"Adding link to queue: {next}")
+                print(f"Adding link to queue: {next}")
                 visited.add(next)
                 queue.append((next, path + [next], depth + 1))
-    return []
+    return [], []
