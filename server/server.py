@@ -1,13 +1,11 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import crawler
 
-app = Flask(__name__)
-
-from flask import send_from_directory
+app = Flask(__name__, static_folder='../client')
 
 @app.route('/', methods=['GET'])
 def home():
-    return send_from_directory('../client', 'index.html')
+    return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/find_path', methods=['POST'])
 def find_path():
@@ -18,6 +16,10 @@ def find_path():
     path = crawler.find_path(start_page, finish_page)
 
     return jsonify({'path': path})
+
+@app.route('/static/<path:path>')
+def send_static(path):
+    return send_from_directory(app.static_folder, path)
 
 if __name__ == '__main__':
     app.run(port=5000)
