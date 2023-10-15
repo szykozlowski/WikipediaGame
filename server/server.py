@@ -3,6 +3,10 @@ import crawler
 
 app = Flask(__name__)
 
+@app.route('/', methods=['GET'])
+def home():
+    return "Hello, World!"
+
 @app.route('/find_path', methods=['POST'])
 def find_path():
     data = request.get_json()
