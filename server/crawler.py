@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 def get_links(page_url):
     response = requests.get(page_url)
     soup = BeautifulSoup(response.text, 'html.parser')
-    links = [a['href'] for a in soup.find_all('a', href=True)]
+    links = ['https://www.wikipedia.org' + a['href'] if a['href'].startswith('/wiki/') else a['href'] for a in soup.find_all('a', href=True)]
     return links
 
 def find_path(start_page, finish_page):
