@@ -7,7 +7,7 @@ from flask import send_from_directory
 
 @app.route('/', methods=['GET'])
 def home():
-    return send_from_directory('client', 'index.html')
+    return send_from_directory('../client', 'index.html')
 
 @app.route('/find_path', methods=['POST'])
 def find_path():
