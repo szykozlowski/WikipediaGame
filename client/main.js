@@ -16,6 +16,7 @@ document.getElementById('wiki-form').addEventListener('submit', function(event) 
     })
     .then(response => response.json())
     .then(data => {
+        console.log(data);
         var pathElement = document.getElementById('path');
         var logsElement = document.getElementById('logs');
         pathElement.innerHTML = ''; // clear previous path

@@ -16,7 +16,9 @@ def find_path():
 
         path, logs = crawler.find_path(start_page, finish_page)
 
-        return jsonify({'path': path, 'logs': logs})
+        response = jsonify({'path': path, 'logs': logs})
+        print(response)
+        return response
     except Exception as e:
         app.logger.error(f"Error occurred: {e}")
         return jsonify({'error': 'An error occurred while finding path', 'logs': logs}), 500
