@@ -18,15 +18,11 @@ document.getElementById('wiki-form').addEventListener('submit', function(event) 
     .then(data => {
         var pathElement = document.getElementById('path');
         pathElement.innerHTML = ''; // clear previous path
-        var ul = document.createElement('ul');
+        var html = '<ul>';
         data.path.forEach(function(page) {
-            var li = document.createElement("li");
-            var a = document.createElement("a");
-            a.href = page;
-            a.textContent = decodeURIComponent(page);
-            li.appendChild(a);
-            ul.appendChild(li);
+            html += '<li><a href="' + page + '">' + decodeURIComponent(page) + '</a></li>';
         });
-        pathElement.appendChild(ul);
+        html += '</ul>';
+        pathElement.innerHTML = html;
     });
 });
