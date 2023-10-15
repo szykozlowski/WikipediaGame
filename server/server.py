@@ -3,9 +3,11 @@ import crawler
 
 app = Flask(__name__)
 
+from flask import send_from_directory
+
 @app.route('/', methods=['GET'])
 def home():
-    return "Hello, World!"
+    return send_from_directory('client', 'index.html')
 
 @app.route('/find_path', methods=['POST'])
 def find_path():
