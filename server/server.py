@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, Response
 import crawler
 
 app = Flask(__name__, static_folder='../client')
@@ -14,9 +14,9 @@ def find_path():
         start_page = data['start']
         finish_page = data['finish']
 
-        path = crawler.find_path(start_page, finish_page)
+        path, logs = crawler.find_path(start_page, finish_page)
 
-        return jsonify({'path': path})
+        return jsonify({'path': path, 'logs': logs})
     except Exception as e:
         app.logger.error(f"Error occurred: {e}")
         return jsonify({'error': 'An error occurred while finding path'}), 500
@@ -25,5 +25,12 @@ def find_path():
 def send_static(path):
     return send_from_directory(app.static_folder, path)
 
+@app.route('/logs', methods=['GET'])
+def stream_logs():
+    def generate():
+        for log in logs:
+            yield f"data: {log}\n\n"
+    return Response(generate(), mimetype='text/event-stream')
+
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run(port=5000, threaded=True)

@@ -17,12 +17,29 @@ document.getElementById('wiki-form').addEventListener('submit', function(event) 
     .then(response => response.json())
     .then(data => {
         var pathElement = document.getElementById('path');
+        var logsElement = document.getElementById('logs');
         pathElement.innerHTML = ''; // clear previous path
-        var html = '<ul>';
+        logsElement.innerHTML = ''; // clear previous logs
+        var pathHtml = '<ul>';
         data.path.forEach(function(page) {
-            html += '<li><a href="' + page + '">' + decodeURIComponent(page) + '</a></li>';
+            pathHtml += '<li><a href="' + page + '">' + decodeURIComponent(page) + '</a></li>';
         });
-        html += '</ul>';
-        pathElement.innerHTML = html;
+        pathHtml += '</ul>';
+        pathElement.innerHTML = pathHtml;
+        var logsHtml = '<ul>';
+        data.logs.forEach(function(log) {
+            logsHtml += '<li>' + log + '</li>';
+        });
+        logsHtml += '</ul>';
+        logsElement.innerHTML = logsHtml;
     });
+
+    var source = new EventSource('/logs');
+    source.onmessage = function(event) {
+        var log = event.data;
+        var logsElement = document.getElementById('logs');
+        var logsHtml = logsElement.innerHTML;
+        logsHtml += '<li>' + log + '</li>';
+        logsElement.innerHTML = logsHtml;
+    };
 });
