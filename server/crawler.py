@@ -8,7 +8,9 @@ def get_links(page_url):
     response = requests.get(page_url)
     print(f"Finished fetching page: {page_url}")
     soup = BeautifulSoup(response.text, 'html.parser')
-    links = [a['href'] for a in soup.find_all('a', href=True) if re.match(r'^https://en\.wikipedia\.org/wiki/[^:]*$', a['href'])]
+    all_links = [a['href'] for a in soup.find_all('a', href=True)]
+    print(f"All links found: {all_links}")
+    links = [link for link in all_links if re.match(r'^https://en\.wikipedia\.org/wiki/[^:]*$', link)]
     print(f"Found {len(links)} links on page: {page_url}")
     return links
 
