@@ -6,15 +6,17 @@
 </head>
 <body>
     <h1>Wikipedia Game</h1>
-    Enter a start page such as <a href="https://en.wikipedia.org/wiki/Martin_Wirsing">https://en.wikipedia.org/wiki/Martin_Wirsing</a> and a finish page such as <a href="https://en.wikipedia.org/wiki/David_Hilbert">https://en.wikipedia.org/wiki/David_Hilbert</a> and click "Find Path" to find the shortest path between the two pages. WARNING: This is a simple breadth-first search that has been tested only for paths no longer than 2 steps.<br><br>
+    Enter a start page such as <a href="https://en.wikipedia.org/wiki/Martin_Wirsing">https://en.wikipedia.org/wiki/Martin_Wirsing</a> and a finish page such as <a href="https://en.wikipedia.org/wiki/David_Hilbert">https://en.wikipedia.org/wiki/David_Hilbert</a> and click "Find Path" to find the shortest path between the two pages. WARNING: This is a simple breadth-first search that has been tested only for paths no longer than 2.<br><br>
     <form id="wiki-form">
         <label for="start-page">Start Page URL:</label><br>
-        <input type="url" id="start-page" name="start-page" pattern="https?://.*\.wikipedia\.org/.*" required style="width: 80%;"><br>
+            <input type="url" id="start-page" name="start-page" pattern="https?://.*\.wikipedia\.org/.*" 
+                required style="width: 80%;" value="https://en.wikipedia.org/wiki/Martin_Wirsing"><br>
         <label for="finish-page">Finish Page URL:</label><br>
-        <input type="url" id="finish-page" name="finish-page" pattern="https?://.*\.wikipedia\.org/.*" required style="width: 80%;"><br>
+            <input type="url" id="finish-page" name="finish-page" pattern="https?://.*\.wikipedia\.org/.*" 
+                required style="width: 80%;" value="https://en.wikipedia.org/wiki/David_Hilbert"><br>
         <input type="submit" value="Find Path">
     </form>
     <div id="path"></div>
-    <script src="/static/main.js?v=2"></script>
+    <script src="/static/main.js"></script>
 </body>
 </html>
