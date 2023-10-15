@@ -2,9 +2,12 @@ import requests
 from bs4 import BeautifulSoup
 
 def get_links(page_url):
+    print(f"Fetching page: {page_url}")
     response = requests.get(page_url)
+    print(f"Finished fetching page: {page_url}")
     soup = BeautifulSoup(response.text, 'html.parser')
     links = [a['href'] for a in soup.find_all('a', href=True) if a['href'].startswith('https://en.wikipedia.org/')]
+    print(f"Found {len(links)} links on page: {page_url}")
     return links
 
 def find_path(start_page, finish_page):
