@@ -14,6 +14,7 @@ def find_path(start_page, finish_page):
     while queue:
         (vertex, path) = queue.pop(0)
         for next in set(get_links(vertex)) - visited:
+            print(f"Following link: {next}")
             if next == finish_page:
                 return path + [next]
             else:
