@@ -18,16 +18,23 @@ def get_links(page_url):
 def find_path(start_page, finish_page):
     queue = [(start_page, [start_page], 0)]
     visited = set()
+    logs = []
 
     while queue:
         (vertex, path, depth) = queue.pop(0)
         for next in set(get_links(vertex)) - visited:
-            print(f"Following link: {next} (depth {depth})")
+            log = f"Following link: {next} (depth {depth})"
+            print(log)
+            logs.append(log)
             if next == finish_page:
-                print(f"Found finish page: {next}")
-                return path + [next], []
+                log = f"Found finish page: {next}"
+                print(log)
+                logs.append(log)
+                return path + [next], logs
             else:
-                print(f"Adding link to queue: {next}")
+                log = f"Adding link to queue: {next}"
+                print(log)
+                logs.append(log)
                 visited.add(next)
                 queue.append((next, path + [next], depth + 1))
-    return [], []
+    return [], logs

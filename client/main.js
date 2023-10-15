@@ -33,13 +33,4 @@ document.getElementById('wiki-form').addEventListener('submit', function(event) 
         logsHtml += '</pre>';
         logsElement.innerHTML = logsHtml;
     });
-
-    var source = new EventSource('/logs');
-    source.onmessage = function(event) {
-        var log = event.data;
-        var logsElement = document.getElementById('logs');
-        var logsHtml = logsElement.innerHTML;
-        logsHtml += log + '\n';
-        logsElement.innerHTML = logsHtml;
-    };
 });
