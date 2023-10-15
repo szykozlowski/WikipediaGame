@@ -26,11 +26,11 @@ document.getElementById('wiki-form').addEventListener('submit', function(event) 
         });
         pathHtml += '</ul>';
         pathElement.innerHTML = pathHtml;
-        var logsHtml = '<ul>';
+        var logsHtml = '<pre>';
         data.logs.forEach(function(log) {
-            logsHtml += '<li>' + log + '</li>';
+            logsHtml += log + '\n';
         });
-        logsHtml += '</ul>';
+        logsHtml += '</pre>';
         logsElement.innerHTML = logsHtml;
     });
 
@@ -39,7 +39,7 @@ document.getElementById('wiki-form').addEventListener('submit', function(event) 
         var log = event.data;
         var logsElement = document.getElementById('logs');
         var logsHtml = logsElement.innerHTML;
-        logsHtml += '<li>' + log + '</li>';
+        logsHtml += log + '\n';
         logsElement.innerHTML = logsHtml;
     };
 });
