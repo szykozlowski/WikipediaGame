@@ -1,9 +1,11 @@
+console.log("Starting fetch request...");
 document.getElementById('wiki-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
     var startPage = document.getElementById('start-page').value;
     var finishPage = document.getElementById('finish-page').value;
 
+    console.log("Sending fetch request...");
     fetch('/find_path', {
         method: 'POST',
         headers: {
@@ -35,3 +37,4 @@ document.getElementById('wiki-form').addEventListener('submit', function(event) 
         logsElement.innerHTML = logsHtml;
     });
 });
+console.log("Finished fetch request...");
