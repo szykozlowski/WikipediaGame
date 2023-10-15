@@ -9,13 +9,17 @@ def home():
 
 @app.route('/find_path', methods=['POST'])
 def find_path():
-    data = request.get_json()
-    start_page = data['start']
-    finish_page = data['finish']
+    try:
+        data = request.get_json()
+        start_page = data['start']
+        finish_page = data['finish']
 
-    path = crawler.find_path(start_page, finish_page)
+        path = crawler.find_path(start_page, finish_page)
 
-    return jsonify({'path': path})
+        return jsonify({'path': path})
+    except Exception as e:
+        app.logger.error(f"Error occurred: {e}")
+        return jsonify({'error': 'An error occurred while finding path'}), 500
 
 @app.route('/static/<path:path>')
 def send_static(path):
