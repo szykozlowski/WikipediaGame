@@ -16,6 +16,6 @@ document.getElementById('wiki-form').addEventListener('submit', function(event) 
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById('path').textContent = data.path;
+        document.getElementById('path').innerHTML = data.path.join('<br>');
     });
 });

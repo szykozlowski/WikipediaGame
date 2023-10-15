@@ -29,5 +29,5 @@ def find_path(start_page, finish_page):
             else:
                 # print(f"Adding link to queue: {next}")
                 visited.add(next)
-                queue.append((next, path + [next]))
+                queue.append((next, path + [next], depth + 1))
     return []
