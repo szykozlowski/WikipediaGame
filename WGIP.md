@@ -17,7 +17,7 @@ Rather than using a breadth first search algorithm, I plan on utilizing a depth 
     while(set of nodes):
         current = node with highest similarity
 
-        if(current == goal)
+        if(link in current page == goal)
             return
         
         sort(links in current page)
