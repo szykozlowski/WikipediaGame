@@ -3,33 +3,21 @@ import spacy
 
 nlp = spacy.load('en_core_web_lg') 
 
-
-word_test = "Exponentation"
-
-word_list = "Power"
-
-
-word_test = nlp(word_test)
-
-word_list = nlp(word_list)
+file_path = "words.txt"
+with open(file_path, 'r') as file:
+    words_list = file.read().split(',')
 
 
-print("Similarity:", word_list.similarity(word_test)) 
+formatted_string = ""
+for word in words_list:
+    formatted_string += word
+
+tokens = nlp(formatted_string) 
 
 
-'''
-print("Enter two space-separated words") 
-words = input() 
+for i in range(0,len(tokens),2):
+
+    token1, token2 = tokens[i], tokens[i + 1] 
   
-tokens = nlp(words)
-
-for token in tokens: 
-
-    print(token.text, token.has_vector, token.vector_norm, token.is_oov) 
-  
-token1, token2 = tokens[0], tokens[1] 
-  
-print("Similarity:", token1.similarity(token2)) 
-
-
-'''
+    print(token1," ",token2," ", token1.similarity(token2)) 
+    
