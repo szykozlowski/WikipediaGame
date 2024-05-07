@@ -15,7 +15,8 @@ Running/Testing the Program:
 python Wikipedia_Demo.py
 Input name of start page
 Input name of end page
-I have yet to find 2 pages for which I couldn't find a path; some take a little longer.  Average run time is < 10 seconds. 
+I have yet to find 2 pages for which I couldn't find a path; some take a little longer.
+Average run time is < 10 seconds. 
 ```
 
 ## How it Works:
