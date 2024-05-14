@@ -1,13 +1,17 @@
 window.onload = function() {
+
     console.log("Starting fetch request...");
     document.getElementById('wiki-form').addEventListener('submit', function(event) {
     event.preventDefault();
-
+    var pathElement = document.getElementById('path');
+    pathElement.innerHTML = ''; // clear previous path
+    logsElement.innerHTML = ''; // clear previous logs
     var startPage = document.getElementById('start-page').value;
     var finishPage = document.getElementById('finish-page').value;
 
     var logsElement = document.getElementById('logs');
     console.log("Sending fetch request...");
+
     fetch('/find_path', {
         method: 'POST',
         headers: {

@@ -11,7 +11,11 @@ Prerequisites: Python
 ```
 git clone https://github.com/alexhkurz/WikipediaGame.git
 cd WikipediaGame/server
-source setup.sh
+
+MAKE SURE setup.sh HAS A VERSION OF PYTHON YOU HAVE INSTALLED: python3 -m venv venv (might be python3.10)
+
+chmod +x setup.sh
+./setup.sh
 ```
 
 Starting the server:
@@ -20,36 +24,28 @@ Starting the server:
 python server.py
 ```
 
-(For development one may want to use `watchmedo auto-restart -d . -p '*.py' -- python server.py`.)
-
 Play the game on [`localhost:5000`](http://127.0.0.1:5000/) (this link will only work after you started the server on your machine (watch the console in case the port number changed to eg `5001`)).
+
+## How it Works:
+
+Certain pages are much easier to get to than others.  Being able to reach a popular page from both ends of the search results in an efficient path.  The algorithm uses a DFS from both ends. 
+
+From the front, it uses a DFS to drill towards any page with a link to one of the most
+popular pages.  This is very quick, as it's nearly guaranteed to find a mention of one of these pages after only a couple of iterations.
+
+From the back, a DFS is used to get backlinks from the end page, and attempts to find a page that is linked to by one of the popular pages.  This takes a bit longer, as the popular pages have a finite amount of pages they link to.  To combat this, the DFS
+prioritizes pages that have a mention of the popular page article title.
+
+When the two ends have met in the middle, a path has been created.
 
 ## Limitations
 
-- The UI works as expected only for chrome-based browsers (Chrome, Brave, ...).
-- Only tested for pages that are no further than two hops away. 
-- Only works for wikipedia pages.
-- Implemented via HTTP requests (no websocket connection between client and server).
-- Users are identified by IP adress (no cookies or sessions).
-- ...
-
-## Parameters
-
-- `RATELIMIT` in `server.py`.
-- `TIMEOUT` in `crawler.py`.
+- Can be a little slow with certain examples
+- Not multi-threaded yet
+- Limited to "United States" as midpoint (although this is part of the reason it's efficient)
 
 ## Further Ideas
 
-- Improve the efficiency of the search.
-- Add heuristics for faster search.
-- Use LLMs to make better guesses, resulting in faster search.
-- ...
-
-## Branches
-
-- `version1` computes the shortest path betwen two wikipedia pages
-- `version2` (=`main`) additionally displays all pages visited during the computation
-- `dev` will output the pages being visited in real time (under development)
-
-
-
+- Adding multithreading
+- Word analysis to pick pages
+- List of possible midpoints, which are top 10 articles rather than top 1.  Multithreaded program will record when each side is able to hit one of these, and combine them when they both have reached the same one.
