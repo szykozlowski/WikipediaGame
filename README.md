@@ -4,20 +4,28 @@
 
 Prerequisites: Python, pip
 
-```
-git clone https://github.com/szykozlowski/WikipediaGame.git
-pip install -r requirements.txt
-```
-
 Running/Testing the Program:
 
 ```
-python Wikipedia_Demo.py
-Input name of start page
-Input name of end page
-I have yet to find 2 pages for which I couldn't find a path; some take a little longer.
-Average run time is < 10 seconds. 
+git clone https://github.com/szykozlowski/WikipediaGame.git
+cd WikipediaGame/server
+MAKE SURE setup.sh HAS A VERSION OF PYTHON YOU HAVE INSTALLED: python3 -m venv venv (might be python3.10)
+chmod +x setup.sh
+./setup.sh
 ```
+
+Starting the server:
+
+```
+python server.py
+
+I have yet to find 2 pages for which I couldn't find a path; some take a little longer.
+Average run time is < 10 seconds, sometimes takes up to 30 
+```
+
+
+
+
 
 ## How it Works:
 
@@ -34,7 +42,7 @@ When the two ends have met in the middle, a path has been created.
 ## Limitations
 
 - Can be a little slow with certain examples
-- Not multi-threaded yet (coming)
+- Not multi-threaded yet
 - Limited to "United States" as midpoint (although this is part of the reason it's efficient)
 
 ## Further Ideas
