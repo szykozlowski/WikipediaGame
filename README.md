@@ -43,4 +43,3 @@ When the two ends have met in the middle, a path has been created.
 - Direct Wikipedia API rather than library (this is the primary slowdown)
 - Word analysis to pick pages
 - List of possible midpoints, which are top 10 articles rather than top 1.  Multithreaded program will record when each side is able to hit one of these, and combine them when they both have reached the same one.
-

@@ -20,12 +20,10 @@ def find_path():
         data = request.get_json()
         start_page = data['start']
         finish_page = data['finish']
-
+        
         path, logs, time, discovered = crawler.find_path(start_page, finish_page)
 
-        elapsed_time = logs[-1]  # This seems like a mistake, as 'elapsed_time' is not used later.
         response = jsonify({'path': path, 'logs': logs, 'time': time, 'discovered': discovered})
-        print(response)
         return response
     except crawler.TimeoutErrorWithLogs as e:
         app.logger.error(f"Error occurred: {e}")
