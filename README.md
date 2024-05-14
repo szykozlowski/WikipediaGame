@@ -1,30 +1,23 @@
-# WikipediaGame
+# Szymon Kozlowski WikipediaGame
 
-<!--At the time of this writing available at http://192.168.16.72:5000/ from inside the Chapman network.-->
-At the time of this writing available at https://wikipiediagame.azurewebsites.net/ 
 ## Installation
 
-(these instructions should work under GNU/Linux and Macos and WSL)
-
-Prerequisites: Python
+Prerequisites: Python, pip
 
 ```
-git clone https://github.com/alexhkurz/WikipediaGame.git
-cd WikipediaGame/server
-
-MAKE SURE setup.sh HAS A VERSION OF PYTHON YOU HAVE INSTALLED: python3 -m venv venv (might be python3.10)
-
-chmod +x setup.sh
-./setup.sh
+git clone https://github.com/szykozlowski/WikipediaGame.git
+pip install -r requirements.txt
 ```
 
-Starting the server:
+Running/Testing the Program:
 
 ```
-python server.py
+python Wikipedia_Demo.py
+Input name of start page
+Input name of end page
+I have yet to find 2 pages for which I couldn't find a path; some take a little longer.
+Average run time is < 10 seconds. 
 ```
-
-Play the game on [`localhost:5000`](http://127.0.0.1:5000/) (this link will only work after you started the server on your machine (watch the console in case the port number changed to eg `5001`)).
 
 ## How it Works:
 
@@ -41,11 +34,12 @@ When the two ends have met in the middle, a path has been created.
 ## Limitations
 
 - Can be a little slow with certain examples
-- Not multi-threaded yet
+- Not multi-threaded yet (coming)
 - Limited to "United States" as midpoint (although this is part of the reason it's efficient)
 
 ## Further Ideas
 
 - Adding multithreading
+- Direct Wikipedia API rather than library (this is the primary slowdown)
 - Word analysis to pick pages
 - List of possible midpoints, which are top 10 articles rather than top 1.  Multithreaded program will record when each side is able to hit one of these, and combine them when they both have reached the same one.
